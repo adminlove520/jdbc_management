@@ -1,0 +1,36 @@
+body {
+  padding-top: 80px; }
+
+[v-cloak] {
+  display: none; }
+
+ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex; }
+
+span.glyphicon {
+  margin-right: 8px; }
+
+div#teachers-table form.form-inline {
+  margin-bottom: 30px; }
+div#teachers-table table {
+  border: solid 2px #dbdbdb; }
+
+.modal-body div.row {
+  margin-top: 16px; }
+.modal-body ul.sexUl {
+  margin-top: 16px; }
+  .modal-body ul.sexUl li {
+    font-size: 18px;
+    margin-right: 18px; }
+    .modal-body ul.sexUl li.sex-selected {
+      color: #2aabd2; }
+
+td button {
+  margin-right: 6px; }
+
+#updateTeacher input[type="text"] {
+  width: auto; }
+
+/*# sourceMappingURL=index.css.map */

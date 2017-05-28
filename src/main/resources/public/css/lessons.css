@@ -1,0 +1,36 @@
+body {
+  padding-top: 80px; }
+
+[v-cloak] {
+  display: none; }
+
+ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex; }
+
+span.glyphicon {
+  margin-right: 8px; }
+
+div#lessons-table form.form-inline {
+  margin-bottom: 30px; }
+div#lessons-table table {
+  border: solid 2px #dbdbdb; }
+
+.modal-body div.row {
+  margin-top: 16px; }
+.modal-body ul.termUl {
+  margin-top: 16px; }
+  .modal-body ul.termUl li {
+    font-size: 18px;
+    margin-right: 18px; }
+    .modal-body ul.termUl li.term-selected {
+      color: #2aabd2; }
+
+td button {
+  margin-right: 6px; }
+
+#updateLesson input[type="text"] {
+  width: auto; }
+
+/*# sourceMappingURL=lessons.css.map */
