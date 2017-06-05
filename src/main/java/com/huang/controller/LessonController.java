@@ -23,6 +23,12 @@ public class LessonController {
     }
 
     @Modifying
+    @RequestMapping("/findLessonsByTeacherName")  // 嵌套子查询，根据教师名查所授课程
+    public Object findLessonsByTeacherName(@RequestParam(value = "teacherName") String teacherName) {
+        return lessonService.findLessonsByTeacherName(teacherName);
+    }
+
+    @Modifying
     @RequestMapping("/addCreditTrigger")
     public String addCreditTrigger(@RequestParam(value = "credit") int credit) {
         lessonService.updateCreditWhenMoreThan(credit);  // 调用触发器

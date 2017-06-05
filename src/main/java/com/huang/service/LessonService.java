@@ -31,6 +31,14 @@ public class LessonService {
         return jdbcTemplate.queryForObject(sql, new Object[]{lessonNum}, new LessonRowMapper());
     }
 
+    public List<Lesson> findLessonsByTeacherName(String teacherName) {
+        final String sql = "SELECT l.* FROM teacher t, lesson l WHERE l.teacherNum = (SELECT teacher.teacherNum FROM teacher WHERE teacher.teacherName = '" + teacherName + "') AND l.teacherNum = t.teacherNum";  // 嵌套子查询
+
+        List<Lesson> lessonList = jdbcTemplate.query(sql, new LessonRowMapper());
+
+        return lessonList;
+    }
+
     public void insertLesson(Lesson lesson) {
         final String sql = "INSERT INTO lesson(lessonNum, lessonName, year, term, credit, teacherNum) VALUES (?,?,?,?,?,?)";
 
@@ -57,7 +65,7 @@ public class LessonService {
     public void updateCreditWhenMoreThan(int credit){
         final String dropTriggerSql = "DROP TRIGGER IF EXISTS update_credit_when_more_than;";
         final String triggerSql = "CREATE TRIGGER update_credit_when_more_than AFTER INSERT ON lesson FOR EACH ROW " +
-                "BEGIN IF new.credit > ? THEN UPDATE student SET credit = ? WHERE lessonNum = new.lessonNum; END IF; END";
+                "BEGIN IF new.credit > ? THEN UPDATE student SET new.credit = ?; END IF; END";
 
         jdbcTemplate.execute(dropTriggerSql);
         jdbcTemplate.update(triggerSql, new Object[]{credit, credit});
@@ -75,7 +83,6 @@ public class LessonService {
     // 调用存储过程相关方法
     public void updateLessonsTime(LessonTime lessonTime){
         final String callSql = "CALL update_lessons_time_proc(?,?)";
-
         jdbcTemplate.update(callSql, new Object[]{lessonTime.getYear(), lessonTime.getTerm()});
     }
 
